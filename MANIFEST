@@ -15,4 +15,5 @@ fallback/const-xs.inc
 lib/Image/ValidJpeg.pm
 valid_jpeg.c
 valid_jpeg.h
-META.yml                                 Module meta-data (added by MakeMaker)
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)
