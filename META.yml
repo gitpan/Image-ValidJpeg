@@ -18,4 +18,6 @@ no_index:
     - t
     - inc
 requires: {}
-version: 1.001001
+resources:
+  repository: https://github.com/sanbeg/Image-ValidJpeg
+version: 1.002000

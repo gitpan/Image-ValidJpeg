@@ -35,5 +35,10 @@
       }
    },
    "release_status" : "stable",
-   "version" : "1.001001"
+   "resources" : {
+      "repository" : {
+         "url" : "https://github.com/sanbeg/Image-ValidJpeg"
+      }
+   },
+   "version" : "1.002000"
 }

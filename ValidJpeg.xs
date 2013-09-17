@@ -1,26 +1,20 @@
-#include "EXTERN.h"
-#include "perl.h"
-#include "XSUB.h"
-
-#include "ppport.h"
-
-#include <valid_jpeg.h>
+#include "valid_jpeg.h"
 
 MODULE = Image::ValidJpeg		PACKAGE = Image::ValidJpeg		
 
 PROTOTYPES: ENABLE
 
 int
-check_tail(FILE * fh);
+check_tail(PerlIO * fh);
 
 int
-valid_jpeg(FILE * fh, int skip=0);
+valid_jpeg(PerlIO * fh, int skip=0);
 
 int 
-check_all(FILE * fh);
+check_all(PerlIO * fh);
 
 int
-check_jpeg(FILE *fh);
+check_jpeg(PerlIO *fh);
 
 int
 GOOD()

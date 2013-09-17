@@ -3,7 +3,7 @@
 
 #########################
 
-use Test::More tests=>12;
+use Test::More tests=>18;
 BEGIN { use_ok('Image::ValidJpeg') };
 
 #########################
@@ -24,6 +24,22 @@ close($fh);
 
 open $fh, 't/data/short.jpg';
 is( Image::ValidJpeg::check_all($fh), Image::ValidJpeg::SHORT, "check_all on invalid image" );
+close($fh);
+
+##############################
+# Test empty JPEG
+##############################
+
+open $fh, 't/data/empty.jpg';
+is( Image::ValidJpeg::check_tail($fh), Image::ValidJpeg::BAD, "check_tail on empty file" );
+close($fh);
+
+open $fh, 't/data/empty.jpg';
+is( Image::ValidJpeg::check_jpeg($fh), Image::ValidJpeg::SHORT, "check_jpeg on empty file" );
+close($fh);
+
+open $fh, 't/data/empty.jpg';
+is( Image::ValidJpeg::check_all($fh), Image::ValidJpeg::SHORT, "check_all on empty file" );
 close($fh);
 
 
@@ -47,6 +63,18 @@ close($fh);
 open $fh, 't/data/small.jpg';
 is( Image::ValidJpeg::check_tail($fh), Image::ValidJpeg::GOOD, "check_tail on valid image" );
 close($fh);
+
+## test that max_seek still works
+is( Image::ValidJpeg::max_seek(10), 1024, 'got default max_seek');
+is( Image::ValidJpeg::max_seek(1024), 10, 'restored default max_seek');
+
+#try with debugging
+Image::ValidJpeg::set_valid_jpeg_debug(1);
+open $fh, 't/data/small.jpg';
+is( Image::ValidJpeg::check_all($fh), Image::ValidJpeg::GOOD, "check_all on valid image" );
+close($fh);
+Image::ValidJpeg::set_valid_jpeg_debug(0);
+
 
 ########################################
 # Test valid JPEGs with extra data
